@@ -22,10 +22,18 @@ const inputsRange = document.querySelectorAll('.input-range');
 
 const bankBtns = document.querySelectorAll('.bank');
 
+const inputsUser = document.querySelectorAll('.input-user-value');
+
 const assignValue = () => {
     totalCost.value = totalCostRange.value;
     anInitialFee.value = anInitialFeeRange.value;
     creditTerm.value = creditTermRange.value;
+}
+const inputValue = () => {
+    totalCostRange.value = totalCost.value;
+    console.log(totalCostRange.value);
+    anInitialFeeRange.value = anInitialFee.value;
+    creditTermRange.value = creditTerm.value;
 }
 
 assignValue();
@@ -49,7 +57,7 @@ const banks = [
     },
 ];
 
-let currentPrecent = banks[0].precents;
+let currentPrecent = banks[0].precent;
 
 for (let bank of bankBtns) {
     bank.addEventListener('click', () => {
@@ -75,6 +83,13 @@ for (let input of inputsRange) {
         calculation(totalCost.value, anInitialFee.value, creditTerm.value);
     })
 };
+
+for (let input of inputsUser) {
+    input.addEventListener('input', () => {
+        inputValue();
+        calculation(totalCost.value, anInitialFee.value, creditTerm.value);
+    })
+}
 
 // расчет 
 const calculation = (totalCost = 0, anInitialFee = 100000, creditTerm = 1)=> {
